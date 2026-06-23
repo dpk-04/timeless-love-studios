@@ -119,7 +119,9 @@
 }
 .reveal-delay-1.in-view { animation-delay: 0.15s; }
 .reveal-delay-2.in-view { animation-delay: 0.3s; }
-.reveal-delay-3.in-view { animation-delay: 0.45s;
+.reveal-delay-3.in-view { animation-delay: 0.45s; }
+.reveal-delay-4.in-view { animation-delay: 0.6s; }
+
 
 @utility eyebrow {
   font-family: var(--font-sans);
