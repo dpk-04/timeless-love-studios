@@ -117,10 +117,25 @@
 .reveal.in-view {
   animation: reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.reveal-delay-1.in-view { animation-delay: 0.15s; }
-.reveal-delay-2.in-view { animation-delay: 0.3s; }
-.reveal-delay-3.in-view { animation-delay: 0.45s; }
-.reveal-delay-4.in-view { animation-delay: 0.6s; }
+
+.reveal-dir {
+  opacity: 0;
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1.4s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(6px);
+  will-change: opacity, transform, filter;
+}
+.reveal-dir[data-dir="up"] { transform: translateY(60px); }
+.reveal-dir[data-dir="left"] { transform: translateX(-60px); }
+.reveal-dir[data-dir="right"] { transform: translateX(60px); }
+.reveal-dir[data-dir="zoom"] { transform: scale(1.05); }
+.reveal-dir[data-dir="fade"] { transform: none; }
+.reveal-dir.in-view {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
 
 
 @utility eyebrow {
