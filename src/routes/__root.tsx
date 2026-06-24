@@ -77,14 +77,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "CraftPhotography — Wedding & Portrait Photography" },
+      {
+        name: "description",
+        content:
+          "CraftPhotography is a boutique Indian wedding and portrait photography studio crafting cinematic, heirloom imagery.",
+      },
+      { name: "author", content: "CraftPhotography" },
+      { property: "og:title", content: "CraftPhotography — Wedding & Portrait Photography" },
+      {
+        property: "og:description",
+        content: "Capturing timeless love stories across India and worldwide.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
