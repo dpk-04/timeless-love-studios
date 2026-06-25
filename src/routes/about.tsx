@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
-import { artists, U } from "@/lib/site-data";
+import { artists } from "@/lib/site-data";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -32,7 +32,7 @@ function AboutPage() {
         title="The artists behind"
         italic="CraftPhotography."
         subtitle="Two photographers, one studio, and a shared belief that the quietest frames are the ones you'll hang on the wall."
-        image={U("photo-1583939003579-730e3918a45a", 2000)}
+        image="/images/editorial/about-cover.jpg"
       />
 
       <section className="px-6 py-24 md:px-16 md:py-32">

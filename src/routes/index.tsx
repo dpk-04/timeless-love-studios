@@ -7,7 +7,6 @@ import {
   portfolioCategories,
   services,
   testimonials,
-  U,
 } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
@@ -27,7 +26,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:image",
-        content: U("photo-1519741497674-611481863552", 1600),
+        content: "/images/hero/hero-1.jpg",
       },
     ],
   }),
@@ -184,7 +183,7 @@ function Editorial() {
     <section className="relative w-full overflow-hidden">
       <div className="relative h-[80vh] min-h-[560px] w-full">
         <img
-          src={U("photo-1511285560929-80b456fea0bc", 2000)}
+          src="/images/editorial/index-cta.jpg"
           alt="Editorial wedding portrait"
           className="absolute inset-0 h-full w-full object-cover animate-slow-zoom"
         />
