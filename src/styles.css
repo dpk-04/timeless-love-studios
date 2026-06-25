@@ -177,8 +177,24 @@
   transition: all 0.4s ease;
   cursor: pointer;
 }
+@utility btn-luxe-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2.25rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-luxe);
+  text-transform: uppercase;
+  background: var(--cream);
+  color: var(--charcoal);
+  border: 1px solid var(--cream);
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
 .btn-luxe:hover { background: transparent; color: var(--charcoal); }
 .btn-luxe-outline:hover { background: var(--cream); color: var(--charcoal); }
+.btn-luxe-light:hover { background: transparent; color: var(--cream); }
 
 @utility hairline {
   display: inline-block;
@@ -187,3 +203,6 @@
   background: var(--beige-deep);
   vertical-align: middle;
 }
+
+/* Image defaults: prevent layout shift and ensure smooth fade-in once loaded */
+img { color: transparent; }

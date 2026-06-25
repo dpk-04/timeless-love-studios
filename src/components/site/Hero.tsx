@@ -15,6 +15,9 @@ export function Hero() {
           key={s.src}
           src={s.src}
           alt={s.alt}
+          loading={i === 0 ? "eager" : "lazy"}
+          decoding="async"
+          fetchPriority={i === 0 ? "high" : "low"}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[2000ms] ease-in-out ${
             i === idx ? "opacity-100 animate-slow-zoom" : "opacity-0"
           }`}
@@ -41,10 +44,10 @@ export function Hero() {
           weddings, portraits and life's most cherished celebrations.
         </p>
         <div
-          className="mt-14 flex flex-wrap items-center justify-center gap-5 animate-fade-up"
+          className="mt-14 flex flex-wrap items-center justify-center gap-4 sm:gap-5 animate-fade-up"
           style={{ animationDelay: "0.55s" }}
         >
-          <Link to="/portfolio" className="btn-luxe-outline">
+          <Link to="/portfolio" className="btn-luxe-light">
             View Portfolio <span aria-hidden>→</span>
           </Link>
           <Link to="/contact" className="btn-luxe-outline">
