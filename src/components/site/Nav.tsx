@@ -91,12 +91,14 @@ export function Nav() {
       </div>
       {open && (
         <div
-          className="fixed z-40 backdrop-blur md:hidden"
+          className="md:hidden"
           style={{
-            top: 64,
+            position: "fixed",
+            top: "64px",
             left: 0,
             right: 0,
             bottom: 0,
+            zIndex: 40,
             backgroundColor: "var(--charcoal)",
           }}
         >
