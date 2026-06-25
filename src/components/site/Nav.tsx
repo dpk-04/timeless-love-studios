@@ -90,7 +90,10 @@ export function Nav() {
         </button>
       </div>
       {open && (
-        <div className="fixed inset-x-0 top-[60px] bottom-0 z-40 bg-charcoal/98 backdrop-blur md:hidden">
+        <div
+          className="fixed inset-x-0 top-[64px] bottom-0 z-40 backdrop-blur md:hidden"
+          style={{ backgroundColor: "var(--charcoal)" }}
+        >
           <div className="flex h-full flex-col gap-8 px-8 pt-14 pb-16">
             {navLinks.map((l) => (
               <Link
