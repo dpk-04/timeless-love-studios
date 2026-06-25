@@ -9,30 +9,24 @@ export const BRAND = {
   instagramHandle: "@craftphotography",
 };
 
-export const U = (id: string, w = 1600) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=85`;
+/**
+ * All imagery is served from `public/images/`. Replace the files in those
+ * folders (keeping the same filenames) to swap in real client photography
+ * without touching any code.
+ *
+ *   public/images/hero/        → homepage hero slideshow
+ *   public/images/portfolio/   → portfolio galleries (per category)
+ *   public/images/team/        → about page artist portraits
+ *   public/images/instagram/   → instagram feed grid
+ */
+const img = (path: string) => `/images/${path}`;
 
 export const heroSlides = [
-  {
-    src: U("photo-1519741497674-611481863552", 2000),
-    alt: "Bride and groom in golden light",
-  },
-  {
-    src: U("photo-1583939003579-730e3918a45a", 2000),
-    alt: "Intimate portrait in soft daylight",
-  },
-  {
-    src: U("photo-1511285560929-80b456fea0bc", 2000),
-    alt: "Destination wedding ceremony",
-  },
-  {
-    src: U("photo-1604017011826-d3b4c23f8914", 2000),
-    alt: "Candlelit wedding dinner",
-  },
-  {
-    src: U("photo-1537907510278-10acdb198d0f", 2000),
-    alt: "Engagement shoot at dawn",
-  },
+  { src: img("hero/hero-1.jpg"), alt: "Bride and groom in golden light" },
+  { src: img("hero/hero-2.jpg"), alt: "Intimate portrait in soft daylight" },
+  { src: img("hero/hero-3.jpg"), alt: "Destination wedding ceremony" },
+  { src: img("hero/hero-4.jpg"), alt: "Candlelit wedding dinner" },
+  { src: img("hero/hero-5.jpg"), alt: "Engagement shoot at dawn" },
 ];
 
 export type PortfolioCategory = {
@@ -48,98 +42,98 @@ export const portfolioCategories: PortfolioCategory[] = [
     slug: "weddings",
     name: "Weddings",
     blurb: "Grand Indian weddings, told with cinematic restraint.",
-    cover: U("photo-1519741497674-611481863552", 1400),
+    cover: img("portfolio/wedding-1.jpg"),
     images: [
-      U("photo-1519741497674-611481863552", 1200),
-      U("photo-1525258946800-98cfd641d0de", 1200),
-      U("photo-1511285560929-80b456fea0bc", 1200),
-      U("photo-1604017011826-d3b4c23f8914", 1200),
-      U("photo-1519225421980-715cb0215aed", 1200),
-      U("photo-1591604466107-ec97de577aff", 1200),
+      img("portfolio/wedding-1.jpg"),
+      img("portfolio/wedding-2.jpg"),
+      img("portfolio/wedding-3.jpg"),
+      img("portfolio/wedding-4.jpg"),
+      img("portfolio/wedding-5.jpg"),
+      img("portfolio/wedding-6.jpg"),
     ],
   },
   {
     slug: "pre-wedding",
     name: "Pre-Wedding Shoots",
     blurb: "Romantic, story-led portraits before the big day.",
-    cover: U("photo-1537907510278-10acdb198d0f", 1400),
+    cover: img("portfolio/prewedding-1.jpg"),
     images: [
-      U("photo-1537907510278-10acdb198d0f", 1200),
-      U("photo-1529636798458-92182e662485", 1200),
-      U("photo-1465495976277-4387d4b0e4a6", 1200),
-      U("photo-1519671482749-fd09be7ccebf", 1200),
+      img("portfolio/prewedding-1.jpg"),
+      img("portfolio/prewedding-2.jpg"),
+      img("portfolio/prewedding-3.jpg"),
+      img("portfolio/prewedding-4.jpg"),
     ],
   },
   {
     slug: "engagement",
     name: "Engagement Shoots",
     blurb: "Intimate frames celebrating the promise of forever.",
-    cover: U("photo-1606800052052-a08af7148866", 1400),
+    cover: img("portfolio/engagement-1.jpg"),
     images: [
-      U("photo-1606800052052-a08af7148866", 1200),
-      U("photo-1583939003579-730e3918a45a", 1200),
-      U("photo-1507504031003-b417219a0fde", 1200),
-      U("photo-1606216794074-735e91aa2c92", 1200),
+      img("portfolio/engagement-1.jpg"),
+      img("portfolio/engagement-2.jpg"),
+      img("portfolio/engagement-3.jpg"),
+      img("portfolio/engagement-4.jpg"),
     ],
   },
   {
     slug: "maternity",
     name: "Maternity Shoots",
     blurb: "Soft, glowing portraits of the months before.",
-    cover: U("photo-1519011985187-444d62641929", 1400),
+    cover: img("portfolio/maternity-1.jpg"),
     images: [
-      U("photo-1519011985187-444d62641929", 1200),
-      U("photo-1515488764276-beab7607c1e6", 1200),
-      U("photo-1555252333-9f8e92e65df9", 1200),
-      U("photo-1518795147063-7777c1d9b94a", 1200),
+      img("portfolio/maternity-1.jpg"),
+      img("portfolio/maternity-2.jpg"),
+      img("portfolio/maternity-3.jpg"),
+      img("portfolio/maternity-4.jpg"),
     ],
   },
   {
     slug: "baby-shower",
     name: "Baby Shower Shoots",
     blurb: "Joyful celebrations and quiet first portraits.",
-    cover: U("photo-1519689680058-324335c77eba", 1400),
+    cover: img("portfolio/babyshower-1.jpg"),
     images: [
-      U("photo-1519689680058-324335c77eba", 1200),
-      U("photo-1530577197743-7adf14294584", 1200),
-      U("photo-1546015720-b8b30df5aa27", 1200),
-      U("photo-1517846693597-826c6e8c4f10", 1200),
+      img("portfolio/babyshower-1.jpg"),
+      img("portfolio/babyshower-2.jpg"),
+      img("portfolio/babyshower-3.jpg"),
+      img("portfolio/babyshower-4.jpg"),
     ],
   },
   {
     slug: "birthday",
     name: "Birthday Photography",
     blurb: "Vivid memories from milestone celebrations.",
-    cover: U("photo-1530103862676-de8c9debad1d", 1400),
+    cover: img("portfolio/birthday-1.jpg"),
     images: [
-      U("photo-1530103862676-de8c9debad1d", 1200),
-      U("photo-1464349095431-e9a21285b5f3", 1200),
-      U("photo-1513151233558-d860c5398176", 1200),
-      U("photo-1502635385003-ee1e6a1a742d", 1200),
+      img("portfolio/birthday-1.jpg"),
+      img("portfolio/birthday-2.jpg"),
+      img("portfolio/birthday-3.jpg"),
+      img("portfolio/birthday-4.jpg"),
     ],
   },
   {
     slug: "family",
     name: "Family Portraits",
     blurb: "Heirloom portraits of the people who matter most.",
-    cover: U("photo-1469371670807-013ccf25f16a", 1400),
+    cover: img("portfolio/family-1.jpg"),
     images: [
-      U("photo-1469371670807-013ccf25f16a", 1200),
-      U("photo-1542037104857-ffbb0b9155fb", 1200),
-      U("photo-1511895426328-dc8714191300", 1200),
-      U("photo-1444840535719-195841cb6e2b", 1200),
+      img("portfolio/family-1.jpg"),
+      img("portfolio/family-2.jpg"),
+      img("portfolio/family-3.jpg"),
+      img("portfolio/family-4.jpg"),
     ],
   },
   {
     slug: "events",
     name: "Event Photography",
     blurb: "Corporate, cultural, and private event coverage.",
-    cover: U("photo-1492684223066-81342ee5ff30", 1400),
+    cover: img("portfolio/event-1.jpg"),
     images: [
-      U("photo-1492684223066-81342ee5ff30", 1200),
-      U("photo-1505373877841-8d25f7d46678", 1200),
-      U("photo-1511795409834-ef04bbd61622", 1200),
-      U("photo-1464366400600-7168b8af9bc3", 1200),
+      img("portfolio/event-1.jpg"),
+      img("portfolio/event-2.jpg"),
+      img("portfolio/event-3.jpg"),
+      img("portfolio/event-4.jpg"),
     ],
   },
 ];
@@ -243,25 +237,25 @@ export const testimonials = [
 ];
 
 export const instagramImages = [
-  U("photo-1529636798458-92182e662485", 800),
-  U("photo-1465495976277-4387d4b0e4a6", 800),
-  U("photo-1519225421980-715cb0215aed", 800),
-  U("photo-1606216794074-735e91aa2c92", 800),
-  U("photo-1507504031003-b417219a0fde", 800),
-  U("photo-1519671482749-fd09be7ccebf", 800),
+  img("instagram/ig-1.jpg"),
+  img("instagram/ig-2.jpg"),
+  img("instagram/ig-3.jpg"),
+  img("instagram/ig-4.jpg"),
+  img("instagram/ig-5.jpg"),
+  img("instagram/ig-6.jpg"),
 ];
 
 export const artists = [
   {
     name: "Aarav Sharma",
     role: "Co-Founder · Lead Photographer",
-    image: U("photo-1506794778202-cad84cf45f1d", 1200),
+    image: img("team/aarav.jpg"),
     bio: "With over a decade behind the lens, Aarav blends editorial restraint with the colour and warmth of Indian celebrations. His frames are quiet, considered, and unmistakably cinematic.",
   },
   {
     name: "Priya Kapoor",
     role: "Co-Founder · Portrait Artist",
-    image: U("photo-1544005313-94ddf0286df2", 1200),
+    image: img("team/priya.jpg"),
     bio: "Priya specialises in portraiture — maternity, family, and intimate moments. Her work is rooted in soft natural light and the unhurried trust she builds with every client.",
   },
 ];

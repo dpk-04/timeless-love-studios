@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
-import { services, U } from "@/lib/site-data";
+import { services } from "@/lib/site-data";
+
+const SERVICES_COVER = "/images/editorial/services-cover.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -17,7 +19,7 @@ export const Route = createFileRoute("/services")({
         property: "og:description",
         content: "Bespoke photography collections crafted for Indian celebrations.",
       },
-      { property: "og:image", content: U("photo-1604017011826-d3b4c23f8914", 1600) },
+      { property: "og:image", content: SERVICES_COVER },
     ],
   }),
   component: ServicesPage,
@@ -31,7 +33,7 @@ function ServicesPage() {
         title="Collections crafted"
         italic="with care."
         subtitle="Transparent pricing in Indian Rupees. Every collection is a starting point — custom proposals available for destination weddings and multi-event coverage."
-        image={U("photo-1604017011826-d3b4c23f8914", 2000)}
+        image={SERVICES_COVER}
       />
 
       <section className="px-6 pb-32 md:px-16 md:pb-48">
