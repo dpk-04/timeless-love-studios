@@ -51,6 +51,8 @@ function AboutPage() {
                     <img
                       src={a.image}
                       alt={a.name}
+                      loading="lazy"
+                      decoding="async"
                       className="aspect-[4/5] w-full object-cover shadow-[0_30px_80px_-30px_rgba(40,30,20,0.35)] transition-transform duration-[1800ms] ease-out hover:scale-[1.02]"
                     />
                     <div

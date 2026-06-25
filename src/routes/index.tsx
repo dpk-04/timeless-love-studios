@@ -82,6 +82,8 @@ function AboutTeaser() {
             <img
               src={artists[0].image}
               alt={artists[0].name}
+              loading="lazy"
+              decoding="async"
               className="aspect-[4/5] w-full object-cover shadow-[0_30px_80px_-30px_rgba(40,30,20,0.35)]"
             />
             <div className="absolute -bottom-8 -right-8 hidden h-48 w-48 border border-[var(--beige-deep)] md:block" />
@@ -161,6 +163,8 @@ function PortfolioTeaser() {
                   <img
                     src={c.cover}
                     alt={c.name}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-[1800ms] ease-out group-hover:scale-[1.08]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-60 transition-opacity duration-700 group-hover:opacity-90" />

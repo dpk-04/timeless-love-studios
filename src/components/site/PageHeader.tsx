@@ -20,6 +20,9 @@ export function PageHeader({
           <img
             src={image}
             alt=""
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             className="absolute inset-0 h-full w-full object-cover opacity-30 animate-slow-zoom"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-[var(--cream)]/40 via-[var(--cream)]/70 to-[var(--cream)]" />
