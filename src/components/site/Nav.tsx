@@ -91,8 +91,14 @@ export function Nav() {
       </div>
       {open && (
         <div
-          className="fixed inset-x-0 top-[64px] bottom-0 z-40 backdrop-blur md:hidden"
-          style={{ backgroundColor: "var(--charcoal)" }}
+          className="fixed z-40 backdrop-blur md:hidden"
+          style={{
+            top: 64,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: "var(--charcoal)",
+          }}
         >
           <div className="flex h-full flex-col gap-8 px-8 pt-14 pb-16">
             {navLinks.map((l) => (
