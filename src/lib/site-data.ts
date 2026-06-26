@@ -10,16 +10,25 @@ export const BRAND = {
 };
 
 /**
- * All imagery is served from `public/images/`. Replace the files in those
- * folders (keeping the same filenames) to swap in real client photography
- * without touching any code.
+ * All imagery is served from `public/images/` and all video from
+ * `public/videos/`. Replace files in those folders (keeping the same
+ * filenames) to swap in real client work without touching any code.
  *
  *   public/images/hero/        → homepage hero slideshow
  *   public/images/portfolio/   → portfolio galleries (per category)
  *   public/images/team/        → about page artist portraits
  *   public/images/instagram/   → instagram feed grid
+ *
+ *   public/videos/home/        → homepage video showcase (showreels)
+ *   public/videos/weddings/    → wedding films
+ *   public/videos/prewedding/  → pre-wedding teasers
+ *   public/videos/engagement/  → engagement films
+ *   public/videos/maternity/   → maternity films
+ *   public/videos/babyshower/  → baby shower films
+ *   public/videos/birthday/    → birthday films
  */
 const img = (path: string) => `/images/${path}`;
+const vid = (path: string) => `/videos/${path}`;
 
 export const heroSlides = [
   { src: img("hero/hero-1.jpg"), alt: "Bride and groom in golden light" },
@@ -29,18 +38,26 @@ export const heroSlides = [
   { src: img("hero/hero-5.jpg"), alt: "Engagement shoot at dawn" },
 ];
 
+export type VideoItem = {
+  src: string;
+  poster: string;
+  title: string;
+  caption?: string;
+};
+
 export type PortfolioCategory = {
   slug: string;
   name: string;
   blurb: string;
   cover: string;
   images: string[];
+  videos: VideoItem[];
 };
 
 export const portfolioCategories: PortfolioCategory[] = [
   {
     slug: "weddings",
-    name: "Weddings",
+    name: "Wedding Photography",
     blurb: "Grand Indian weddings, told with cinematic restraint.",
     cover: img("portfolio/wedding-1.jpg"),
     images: [
@@ -51,10 +68,24 @@ export const portfolioCategories: PortfolioCategory[] = [
       img("portfolio/wedding-5.jpg"),
       img("portfolio/wedding-6.jpg"),
     ],
+    videos: [
+      {
+        src: vid("weddings/wedding-video-1.mp4"),
+        poster: img("portfolio/wedding-2.jpg"),
+        title: "Aanya & Rohan — Udaipur",
+        caption: "A three-day wedding film",
+      },
+      {
+        src: vid("weddings/wedding-video-2.mp4"),
+        poster: img("portfolio/wedding-5.jpg"),
+        title: "Sneha & Arjun — Goa",
+        caption: "Beachside ceremony highlights",
+      },
+    ],
   },
   {
     slug: "pre-wedding",
-    name: "Pre-Wedding Shoots",
+    name: "Pre-Wedding Photography",
     blurb: "Romantic, story-led portraits before the big day.",
     cover: img("portfolio/prewedding-1.jpg"),
     images: [
@@ -63,10 +94,24 @@ export const portfolioCategories: PortfolioCategory[] = [
       img("portfolio/prewedding-3.jpg"),
       img("portfolio/prewedding-4.jpg"),
     ],
+    videos: [
+      {
+        src: vid("prewedding/prewedding-video-1.mp4"),
+        poster: img("portfolio/prewedding-1.jpg"),
+        title: "Ishita & Karan — Jaipur",
+        caption: "A pre-wedding teaser",
+      },
+      {
+        src: vid("prewedding/prewedding-video-2.mp4"),
+        poster: img("portfolio/prewedding-3.jpg"),
+        title: "Riya & Dev — Kerala",
+        caption: "Backwaters love story",
+      },
+    ],
   },
   {
     slug: "engagement",
-    name: "Engagement Shoots",
+    name: "Engagement Photography",
     blurb: "Intimate frames celebrating the promise of forever.",
     cover: img("portfolio/engagement-1.jpg"),
     images: [
@@ -75,10 +120,18 @@ export const portfolioCategories: PortfolioCategory[] = [
       img("portfolio/engagement-3.jpg"),
       img("portfolio/engagement-4.jpg"),
     ],
+    videos: [
+      {
+        src: vid("engagement/engagement-video-1.mp4"),
+        poster: img("portfolio/engagement-2.jpg"),
+        title: "Tara & Vihaan — Mumbai",
+        caption: "A rooftop proposal",
+      },
+    ],
   },
   {
     slug: "maternity",
-    name: "Maternity Shoots",
+    name: "Maternity Photography",
     blurb: "Soft, glowing portraits of the months before.",
     cover: img("portfolio/maternity-1.jpg"),
     images: [
@@ -87,10 +140,18 @@ export const portfolioCategories: PortfolioCategory[] = [
       img("portfolio/maternity-3.jpg"),
       img("portfolio/maternity-4.jpg"),
     ],
+    videos: [
+      {
+        src: vid("maternity/maternity-video-1.mp4"),
+        poster: img("portfolio/maternity-2.jpg"),
+        title: "The Mehra Family",
+        caption: "A maternity portrait film",
+      },
+    ],
   },
   {
     slug: "baby-shower",
-    name: "Baby Shower Shoots",
+    name: "Baby Shower Photography",
     blurb: "Joyful celebrations and quiet first portraits.",
     cover: img("portfolio/babyshower-1.jpg"),
     images: [
@@ -98,6 +159,14 @@ export const portfolioCategories: PortfolioCategory[] = [
       img("portfolio/babyshower-2.jpg"),
       img("portfolio/babyshower-3.jpg"),
       img("portfolio/babyshower-4.jpg"),
+    ],
+    videos: [
+      {
+        src: vid("babyshower/babyshower-video-1.mp4"),
+        poster: img("portfolio/babyshower-2.jpg"),
+        title: "Anaya's Welcome",
+        caption: "Baby shower highlights",
+      },
     ],
   },
   {
@@ -111,30 +180,36 @@ export const portfolioCategories: PortfolioCategory[] = [
       img("portfolio/birthday-3.jpg"),
       img("portfolio/birthday-4.jpg"),
     ],
-  },
-  {
-    slug: "family",
-    name: "Family Portraits",
-    blurb: "Heirloom portraits of the people who matter most.",
-    cover: img("portfolio/family-1.jpg"),
-    images: [
-      img("portfolio/family-1.jpg"),
-      img("portfolio/family-2.jpg"),
-      img("portfolio/family-3.jpg"),
-      img("portfolio/family-4.jpg"),
+    videos: [
+      {
+        src: vid("birthday/birthday-video-1.mp4"),
+        poster: img("portfolio/birthday-3.jpg"),
+        title: "Vir Turns One",
+        caption: "A first birthday film",
+      },
     ],
   },
+];
+
+/** Videos shown in the homepage Video Showcase section. */
+export const showcaseVideos: VideoItem[] = [
   {
-    slug: "events",
-    name: "Event Photography",
-    blurb: "Corporate, cultural, and private event coverage.",
-    cover: img("portfolio/event-1.jpg"),
-    images: [
-      img("portfolio/event-1.jpg"),
-      img("portfolio/event-2.jpg"),
-      img("portfolio/event-3.jpg"),
-      img("portfolio/event-4.jpg"),
-    ],
+    src: vid("home/showreel-1.mp4"),
+    poster: img("portfolio/wedding-1.jpg"),
+    title: "The Wedding Reel",
+    caption: "A cinematic highlight film",
+  },
+  {
+    src: vid("home/showreel-2.mp4"),
+    poster: img("portfolio/prewedding-2.jpg"),
+    title: "Pre-Wedding Stories",
+    caption: "Romantic teasers across India",
+  },
+  {
+    src: vid("home/showreel-3.mp4"),
+    poster: img("portfolio/maternity-1.jpg"),
+    title: "Portraits in Motion",
+    caption: "Maternity & family films",
   },
 ];
 
@@ -160,6 +235,17 @@ export const services = [
       "Two outfit changes",
       "150+ edited images",
       "Cinematic colour grading",
+    ],
+  },
+  {
+    name: "Engagement Photography",
+    price: "₹35,000",
+    blurb: "Intimate frames celebrating the promise of forever.",
+    items: [
+      "3 hours of coverage",
+      "Indoor or outdoor",
+      "120+ edited images",
+      "Quick 7-day delivery",
     ],
   },
   {
@@ -194,17 +280,6 @@ export const services = [
       "Candid & family portraits",
       "80+ edited images",
       "Quick 48-hour preview",
-    ],
-  },
-  {
-    name: "Family Photography",
-    price: "₹18,000",
-    blurb: "Heirloom portraits for the whole family.",
-    items: [
-      "90-minute session",
-      "Indoor or outdoor",
-      "60+ edited images",
-      "One framed fine-art print",
     ],
   },
 ];
@@ -256,7 +331,7 @@ export const artists = [
     name: "Priya Kapoor",
     role: "Co-Founder · Portrait Artist",
     image: img("team/priya.jpg"),
-    bio: "Priya specialises in portraiture — maternity, family, and intimate moments. Her work is rooted in soft natural light and the unhurried trust she builds with every client.",
+    bio: "Priya specialises in portraiture — maternity and intimate moments. Her work is rooted in soft natural light and the unhurried trust she builds with every client.",
   },
 ];
 

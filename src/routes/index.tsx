@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Hero } from "@/components/site/Hero";
 import { Instagram } from "@/components/site/Instagram";
 import { Reveal } from "@/components/site/Reveal";
+import { VideoShowcase } from "@/components/site/VideoShowcase";
 import {
   artists,
   portfolioCategories,
@@ -16,18 +17,18 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Boutique Indian wedding, pre-wedding, maternity and family photography studio. Cinematic, heirloom imagery crafted with care.",
+          "Boutique Indian wedding, pre-wedding, engagement, maternity, baby shower and birthday photography studio. Cinematic, heirloom imagery crafted with care.",
       },
       { property: "og:title", content: "CraftPhotography — Capturing Timeless Love Stories" },
       {
         property: "og:description",
         content:
-          "Wedding, pre-wedding, maternity, baby shower, birthday and family photography across India.",
+          "Wedding, pre-wedding, engagement, maternity, baby shower and birthday photography across India.",
       },
-      {
-        property: "og:image",
-        content: "/images/hero/hero-1.jpg",
-      },
+      { property: "og:image", content: "/images/hero/hero-1.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "CraftPhotography — Capturing Timeless Love Stories" },
+      { name: "twitter:image", content: "/images/hero/hero-1.jpg" },
     ],
   }),
   component: Home,
@@ -48,6 +49,7 @@ function Home() {
       <Hero />
       <Marquee />
       <AboutTeaser />
+      <VideoShowcase />
       <PortfolioTeaser />
       <Editorial />
       <ServicesTeaser />

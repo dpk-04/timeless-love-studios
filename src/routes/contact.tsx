@@ -11,13 +11,15 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Begin your enquiry with CraftPhotography. Wedding, pre-wedding, maternity, baby shower, birthday and family photography across India.",
+          "Begin your enquiry with CraftPhotography. Wedding, pre-wedding, engagement, maternity, baby shower and birthday photography across India.",
       },
       { property: "og:title", content: "Contact CraftPhotography" },
       {
         property: "og:description",
         content: "Tell us about your celebration — we reply within 48 hours.",
       },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Contact CraftPhotography" },
     ],
   }),
   component: ContactPage,
@@ -30,8 +32,6 @@ const eventTypes = [
   "Maternity",
   "Baby Shower",
   "Birthday",
-  "Family Portrait",
-  "Event",
 ];
 
 function ContactPage() {

@@ -12,7 +12,7 @@ export const Route = createFileRoute("/services")({
       {
         name: "description",
         content:
-          "Wedding, pre-wedding, maternity, baby shower, birthday and family photography services with transparent pricing in INR.",
+          "Wedding, pre-wedding, engagement, maternity, baby shower and birthday photography services with transparent pricing in INR.",
       },
       { property: "og:title", content: "Services — CraftPhotography" },
       {
@@ -20,6 +20,9 @@ export const Route = createFileRoute("/services")({
         content: "Bespoke photography collections crafted for Indian celebrations.",
       },
       { property: "og:image", content: SERVICES_COVER },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Services — CraftPhotography" },
+      { name: "twitter:image", content: SERVICES_COVER },
     ],
   }),
   component: ServicesPage,
