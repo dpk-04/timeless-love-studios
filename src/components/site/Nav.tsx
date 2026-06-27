@@ -41,15 +41,15 @@ export function Nav() {
             : "bg-[var(--cream)]/95 backdrop-blur-md text-foreground py-4 shadow-[0_1px_0_var(--beige)]"
         }`}
       >
-      <div className="mx-auto grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 md:flex md:max-w-[1500px] md:px-16">
+      <div className="mx-auto grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-6 lg:flex lg:max-w-[1500px] lg:px-16">
         <Link
           to="/"
-          className="font-serif text-[22px] tracking-wide md:text-[26px] min-w-0 truncate"
+          className="font-serif text-[20px] tracking-wide sm:text-[22px] lg:text-[26px] min-w-0 truncate"
           aria-label="CraftPhotography — Home"
         >
           Craft<span className="text-[var(--beige-deep)]">Photography</span>
         </Link>
-        <nav className="hidden gap-10 md:flex md:flex-1 md:justify-center">
+        <nav className="hidden gap-8 lg:flex lg:flex-1 lg:justify-center xl:gap-10">
           {navLinks.map((l) => (
             <Link
               key={l.to}
@@ -67,13 +67,13 @@ export function Nav() {
         </nav>
         <Link
           to="/contact"
-          className="hidden eyebrow underline underline-offset-8 decoration-[var(--beige-deep)] md:inline"
+          className="hidden eyebrow underline underline-offset-8 decoration-[var(--beige-deep)] lg:inline"
         >
           Enquire
         </Link>
         <button
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden -mr-2 inline-flex h-11 w-11 shrink-0 items-center justify-center"
+          className="lg:hidden -mr-2 inline-flex h-11 w-11 shrink-0 items-center justify-center"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
