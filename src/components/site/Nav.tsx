@@ -93,7 +93,7 @@ export function Nav() {
     </header>
     {open && (
       <div
-        className="md:hidden"
+        className="lg:hidden"
         style={{
           position: "fixed",
           top: "64px",
