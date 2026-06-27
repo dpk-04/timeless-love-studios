@@ -18,8 +18,13 @@ export const Route = createFileRoute("/about")({
         content:
           "Two artists, one studio, a decade of weddings and portraits across India.",
       },
+      { property: "og:url", content: "/about" },
       { property: "og:image", content: artists[0].image },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About CraftPhotography" },
+      { name: "twitter:image", content: artists[0].image },
     ],
+    links: [{ rel: "canonical", href: "/about" }],
   }),
   component: AboutPage,
 });
@@ -108,9 +113,9 @@ function AboutPage() {
               <p>
                 We've documented weddings in havelis and on beaches, intimate
                 maternity sessions at home, baby showers brimming with marigolds,
-                and family portraits passed down through generations. Through it
-                all, our approach has stayed the same — patient, unhurried, and
-                deeply human.
+                engagement evenings on quiet rooftops, and milestone birthdays
+                lit only by candlelight. Through it all, our approach has stayed
+                the same — patient, unhurried, and deeply human.
               </p>
               <p>
                 Every gallery we deliver is a small archive of feeling. That is

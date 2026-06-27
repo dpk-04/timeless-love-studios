@@ -25,11 +25,13 @@ export const Route = createFileRoute("/")({
         content:
           "Wedding, pre-wedding, engagement, maternity, baby shower and birthday photography across India.",
       },
+      { property: "og:url", content: "/" },
       { property: "og:image", content: "/images/hero/hero-1.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "CraftPhotography — Capturing Timeless Love Stories" },
       { name: "twitter:image", content: "/images/hero/hero-1.jpg" },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Home,
 });
