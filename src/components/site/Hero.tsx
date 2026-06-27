@@ -56,7 +56,11 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 text-[var(--cream)]/70 animate-fade-in" style={{ animationDelay: "1s" }}>
+      <div
+        className="absolute bottom-10 left-1/2 z-10 hidden -translate-x-1/2 text-[var(--cream)]/70 animate-fade-in md:block"
+        style={{ animationDelay: "1s" }}
+        aria-hidden="true"
+      >
         <div className="flex flex-col items-center gap-3">
           <span className="eyebrow text-[10px]">Scroll</span>
           <span className="block h-14 w-px bg-[var(--cream)]/50" />
