@@ -57,13 +57,13 @@ export function Hero() {
       </div>
 
       <div
-        className="absolute bottom-10 left-1/2 z-10 hidden -translate-x-1/2 text-[var(--cream)]/70 animate-fade-in md:block"
+        className="pointer-events-none absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 text-[var(--cream)]/70 animate-fade-in lg:block"
         style={{ animationDelay: "1s" }}
         aria-hidden="true"
       >
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-center gap-2">
           <span className="eyebrow text-[10px]">Scroll</span>
-          <span className="block h-14 w-px bg-[var(--cream)]/50" />
+          <span className="block h-10 w-px bg-[var(--cream)]/50" />
         </div>
       </div>
 

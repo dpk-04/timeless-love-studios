@@ -111,15 +111,15 @@ function VideoModal({
       aria-modal="true"
       aria-label={video.title}
       onClick={onClose}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 px-4 py-10 backdrop-blur-md animate-fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 px-4 py-16 backdrop-blur-md animate-fade-in sm:px-8 sm:py-20"
     >
       <button
         type="button"
         onClick={onClose}
         aria-label="Close video"
-        className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center text-[var(--cream)] transition-opacity hover:opacity-70 md:right-10 md:top-10"
+        className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-[var(--cream)]/40 bg-black/60 text-[var(--cream)] backdrop-blur-sm transition-all hover:bg-[var(--cream)] hover:text-[var(--charcoal)] sm:right-6 sm:top-6 md:right-10 md:top-10"
       >
-        <span className="relative block h-5 w-5">
+        <span className="relative block h-4 w-4">
           <span className="absolute inset-x-0 top-1/2 block h-px rotate-45 bg-current" />
           <span className="absolute inset-x-0 top-1/2 block h-px -rotate-45 bg-current" />
         </span>
@@ -138,7 +138,7 @@ function VideoModal({
         />
         <div className="mt-6 text-center">
           <p className="eyebrow text-[var(--beige)]">{video.caption}</p>
-          <p className="mt-3 font-serif text-2xl italic text-[var(--cream)] md:text-3xl">
+          <p className="mt-3 font-serif text-xl italic text-[var(--cream)] sm:text-2xl md:text-3xl">
             {video.title}
           </p>
         </div>
