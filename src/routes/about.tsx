@@ -108,9 +108,9 @@ function AboutPage() {
               <p>
                 We've documented weddings in havelis and on beaches, intimate
                 maternity sessions at home, baby showers brimming with marigolds,
-                and family portraits passed down through generations. Through it
-                all, our approach has stayed the same — patient, unhurried, and
-                deeply human.
+                engagement evenings on quiet rooftops, and milestone birthdays
+                lit only by candlelight. Through it all, our approach has stayed
+                the same — patient, unhurried, and deeply human.
               </p>
               <p>
                 Every gallery we deliver is a small archive of feeling. That is
