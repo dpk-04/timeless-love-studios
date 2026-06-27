@@ -18,8 +18,13 @@ export const Route = createFileRoute("/about")({
         content:
           "Two artists, one studio, a decade of weddings and portraits across India.",
       },
+      { property: "og:url", content: "/about" },
       { property: "og:image", content: artists[0].image },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About CraftPhotography" },
+      { name: "twitter:image", content: artists[0].image },
     ],
+    links: [{ rel: "canonical", href: "/about" }],
   }),
   component: AboutPage,
 });
