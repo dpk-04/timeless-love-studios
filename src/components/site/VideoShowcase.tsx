@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import { showcaseVideos, type VideoItem } from "@/lib/site-data";
 
 export function VideoShowcase() {
   const [active, setActive] = useState<VideoItem | null>(null);
+  const featured = showcaseVideos.slice(0, 3);
 
   useEffect(() => {
     if (!active) return;
@@ -25,29 +27,41 @@ export function VideoShowcase() {
         <Reveal className="text-center">
           <p className="eyebrow text-[var(--beige)]">
             <span className="hairline mr-3 bg-[var(--beige-deep)]" />
-            Cinematic Films
+            Featured Films
             <span className="hairline ml-3 bg-[var(--beige-deep)]" />
           </p>
           <h2 className="mt-8 text-5xl text-[var(--cream)] md:text-6xl lg:text-7xl">
             Stories in <em className="italic text-[var(--beige)]">motion</em>
           </h2>
           <p className="mx-auto mt-8 max-w-xl leading-[1.85] text-[var(--cream)]/75">
-            A small selection of our cinematic highlight films — 30 to 60 seconds
-            of the slow, considered moments we live for.
+            Three of our latest cinematic highlight films — hover to preview,
+            click to watch in full.
           </p>
         </Reveal>
 
-        <div className="mt-20 grid gap-6 md:mt-24 md:grid-cols-3 md:gap-8">
-          {showcaseVideos.map((v, i) => (
+        <div className="mt-20 grid gap-8 md:mt-28 md:grid-cols-3 md:gap-10">
+          {featured.map((v, i) => (
             <Reveal
               key={v.src}
-              delay={i * 0.12}
+              delay={i * 0.14}
               direction={i % 2 === 0 ? "up" : "zoom"}
             >
-              <VideoCard video={v} onPlay={() => setActive(v)} />
+              <FeaturedVideoCard video={v} onPlay={() => setActive(v)} />
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="mt-20 flex justify-center md:mt-28">
+          <Link to="/films" className="btn-luxe-light group">
+            View All Films
+            <span
+              aria-hidden
+              className="ml-1 inline-block transition-transform duration-500 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </Link>
+        </Reveal>
       </div>
 
       {active && <VideoModal video={active} onClose={() => setActive(null)} />}
@@ -55,17 +69,41 @@ export function VideoShowcase() {
   );
 }
 
-export function VideoCard({
+export function FeaturedVideoCard({
   video,
   onPlay,
 }: {
   video: VideoItem;
   onPlay: () => void;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [hovering, setHovering] = useState(false);
+
+  const handleEnter = () => {
+    setHovering(true);
+    const el = videoRef.current;
+    if (el) {
+      el.currentTime = 0;
+      el.play().catch(() => {});
+    }
+  };
+  const handleLeave = () => {
+    setHovering(false);
+    const el = videoRef.current;
+    if (el) {
+      el.pause();
+      el.currentTime = 0;
+    }
+  };
+
   return (
     <button
       type="button"
       onClick={onPlay}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      onFocus={handleEnter}
+      onBlur={handleLeave}
       aria-label={`Play ${video.title}`}
       className="group relative block aspect-[4/5] w-full overflow-hidden bg-black text-left"
     >
@@ -74,11 +112,41 @@ export function VideoCard({
         alt={video.title}
         loading="lazy"
         decoding="async"
-        className="absolute inset-0 h-full w-full object-cover opacity-90 transition-all duration-[1800ms] ease-out group-hover:scale-[1.06] group-hover:opacity-100"
+        className={`absolute inset-0 h-full w-full object-cover transition-all duration-[1400ms] ease-out ${
+          hovering ? "scale-[1.06] opacity-0" : "scale-100 opacity-90"
+        }`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
+      <video
+        ref={videoRef}
+        src={video.src}
+        poster={video.poster}
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        tabIndex={-1}
+        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1200ms] ease-out ${
+          hovering ? "opacity-100" : "opacity-0"
+        }`}
+      />
 
-      <span className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--cream)]/60 bg-[var(--cream)]/10 backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:border-[var(--cream)] group-hover:bg-[var(--cream)]/20 md:h-24 md:w-24">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-black/40 transition-opacity duration-700 group-hover:from-black/70" />
+
+      {video.duration && (
+        <span className="pointer-events-none absolute right-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full border border-[var(--cream)]/30 bg-black/50 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.28em] text-[var(--cream)] backdrop-blur-sm">
+          <span className="block h-1 w-1 rounded-full bg-[var(--beige)]" />
+          {video.duration}
+        </span>
+      )}
+
+      <span
+        className={`pointer-events-none absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[var(--cream)]/60 bg-[var(--cream)]/10 backdrop-blur-sm transition-all duration-700 md:h-24 md:w-24 ${
+          hovering
+            ? "scale-90 opacity-0"
+            : "scale-100 opacity-100 group-hover:scale-110"
+        }`}
+      >
         <svg
           viewBox="0 0 24 24"
           className="ml-1 h-7 w-7 fill-[var(--cream)] md:h-8 md:w-8"
@@ -88,15 +156,25 @@ export function VideoCard({
         </svg>
       </span>
 
-      <span className="absolute inset-x-0 bottom-0 p-6 text-[var(--cream)] md:p-8">
-        <span className="eyebrow text-[var(--beige)]">{video.caption}</span>
-        <span className="mt-2 block font-serif text-2xl italic md:text-3xl">
+      <span className="pointer-events-none absolute inset-x-0 bottom-0 p-7 text-[var(--cream)] md:p-9">
+        {video.category && (
+          <span className="eyebrow text-[var(--beige)]">{video.category}</span>
+        )}
+        <span className="mt-3 block font-serif text-2xl italic leading-tight md:text-3xl">
           {video.title}
         </span>
+        {video.caption && (
+          <span className="mt-2 block text-[13px] leading-relaxed text-[var(--cream)]/70">
+            {video.caption}
+          </span>
+        )}
       </span>
     </button>
   );
 }
+
+// Backwards-compatible export used by Portfolio route
+export const VideoCard = FeaturedVideoCard;
 
 function VideoModal({
   video,
@@ -137,7 +215,9 @@ function VideoModal({
           className="aspect-video w-full bg-black"
         />
         <div className="mt-6 text-center">
-          <p className="eyebrow text-[var(--beige)]">{video.caption}</p>
+          {video.category && (
+            <p className="eyebrow text-[var(--beige)]">{video.category}</p>
+          )}
           <p className="mt-3 font-serif text-xl italic text-[var(--cream)] sm:text-2xl md:text-3xl">
             {video.title}
           </p>
