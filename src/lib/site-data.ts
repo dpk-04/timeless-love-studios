@@ -43,7 +43,10 @@ export type VideoItem = {
   poster: string;
   title: string;
   caption?: string;
+  duration?: string;
+  category?: string;
 };
+
 
 export type PortfolioCategory = {
   slug: string;
