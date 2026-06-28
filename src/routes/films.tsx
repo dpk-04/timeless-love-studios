@@ -32,33 +32,53 @@ export const Route = createFileRoute("/films")({
   component: FilmsPage,
 });
 
-type FilmItem = VideoItem & { category: string };
+type FilmSection = {
+  slug: string;
+  name: string;
+  label: string;
+  blurb: string;
+  videos: VideoItem[];
+};
+
+/**
+ * Each section pulls its films from `portfolioCategories` in
+ * `src/lib/site-data.ts`, which in turn points at files inside
+ * `public/videos/<folder>/`. To add or replace films, just drop new
+ * `.mp4` files into the matching `public/videos/` folder and update
+ * the `videos: [...]` array for that category — no changes needed here.
+ */
+const SECTION_ORDER: { slug: string; label: string }[] = [
+  { slug: "weddings", label: "Wedding Films" },
+  { slug: "pre-wedding", label: "Pre-Wedding Films" },
+  { slug: "engagement", label: "Engagement Films" },
+  { slug: "maternity", label: "Maternity Films" },
+  { slug: "baby-shower", label: "Baby Shower Films" },
+  { slug: "birthday", label: "Birthday Films" },
+];
 
 function FilmsPage() {
-  const allFilms = useMemo<FilmItem[]>(() => {
-    const fromCategories = portfolioCategories.flatMap((c) =>
-      c.videos.map((v) => ({ ...v, category: v.category ?? c.name })),
-    );
-    const showreels = showcaseVideos.map((v) => ({
-      ...v,
-      category: v.category ?? "Showreels",
-    }));
-    // showreels first, then category films
-    return [...showreels, ...fromCategories];
+  const sections = useMemo<FilmSection[]>(() => {
+    const out: FilmSection[] = [];
+    for (const { slug, label } of SECTION_ORDER) {
+      const cat = portfolioCategories.find((c) => c.slug === slug);
+      if (!cat || cat.videos.length === 0) continue;
+      out.push({
+        slug,
+        name: cat.name,
+        label,
+        blurb: cat.blurb,
+        videos: cat.videos.map((v) => ({ ...v, category: v.category ?? label })),
+      });
+    }
+    return out;
   }, []);
 
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    allFilms.forEach((f) => set.add(f.category));
-    return ["All", ...Array.from(set)];
-  }, [allFilms]);
-
-  const [active, setActive] = useState<string>("All");
+  const [active, setActive] = useState<string>("all");
   const [playing, setPlaying] = useState<VideoItem | null>(null);
 
-  const visible = useMemo(
-    () => (active === "All" ? allFilms : allFilms.filter((f) => f.category === active)),
-    [active, allFilms],
+  const visibleSections = useMemo(
+    () => (active === "all" ? sections : sections.filter((s) => s.slug === active)),
+    [active, sections],
   );
 
   useEffect(() => {
@@ -81,50 +101,87 @@ function FilmsPage() {
         eyebrow="Cinematic Films"
         title="Stories in"
         italic="motion."
-        subtitle="A complete collection of our highlight films — weddings, pre-weddings, engagements and quiet portrait moments."
+        subtitle="A curated collection of our highlight films — organised by occasion, from grand Indian weddings to the quietest portrait moments."
       />
 
-      <section className="px-6 pb-32 md:px-16 md:pb-48">
+      <section className="px-6 pb-12 md:px-16">
         <div className="mx-auto max-w-[1500px]">
           <Reveal>
             <div className="flex flex-wrap items-center justify-center gap-x-7 gap-y-4 border-y border-border py-7">
-              {categories.map((c) => (
+              <button
+                onClick={() => setActive("all")}
+                className={`eyebrow transition-colors ${
+                  active === "all"
+                    ? "text-foreground"
+                    : "text-foreground/50 hover:text-foreground"
+                }`}
+              >
+                All Films
+              </button>
+              {sections.map((s) => (
                 <button
-                  key={c}
-                  onClick={() => setActive(c)}
+                  key={s.slug}
+                  onClick={() => setActive(s.slug)}
                   className={`eyebrow transition-colors ${
-                    active === c
+                    active === s.slug
                       ? "text-foreground"
                       : "text-foreground/50 hover:text-foreground"
                   }`}
                 >
-                  {c}
+                  {s.label}
                 </button>
               ))}
             </div>
           </Reveal>
-
-          {visible.length ? (
-            <div className="mt-14 grid gap-8 md:mt-20 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
-              {visible.map((v, i) => (
-                <Reveal
-                  key={`${v.src}-${i}`}
-                  delay={(i % 3) * 0.1}
-                  direction={i % 2 === 0 ? "up" : "zoom"}
-                >
-                  <FeaturedVideoCard video={v} onPlay={() => setPlaying(v)} />
-                </Reveal>
-              ))}
-            </div>
-          ) : (
-            <Reveal className="mt-20 text-center">
-              <p className="mx-auto max-w-md text-[15px] leading-[1.85] text-muted-foreground">
-                Films for this collection are coming soon.
-              </p>
-            </Reveal>
-          )}
         </div>
       </section>
+
+      <div className="pb-32 md:pb-48">
+        {visibleSections.map((section, sIdx) => (
+          <section
+            key={section.slug}
+            className={`px-6 md:px-16 ${sIdx === 0 ? "pt-6 md:pt-10" : "pt-24 md:pt-32"}`}
+          >
+            <div className="mx-auto max-w-[1500px]">
+              <Reveal>
+                <div className="mb-12 flex flex-col gap-4 md:mb-16 md:flex-row md:items-end md:justify-between">
+                  <div>
+                    <p className="eyebrow text-foreground/60">
+                      {String(sIdx + 1).padStart(2, "0")} — Collection
+                    </p>
+                    <h2 className="mt-3 font-serif text-3xl tracking-tight md:text-5xl">
+                      {section.label}
+                    </h2>
+                  </div>
+                  <p className="max-w-md text-[15px] leading-[1.85] text-muted-foreground md:text-right">
+                    {section.blurb}
+                  </p>
+                </div>
+              </Reveal>
+
+              <div className="grid gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-3">
+                {section.videos.map((v, i) => (
+                  <Reveal
+                    key={`${v.src}-${i}`}
+                    delay={(i % 3) * 0.1}
+                    direction={i % 2 === 0 ? "up" : "zoom"}
+                  >
+                    <FeaturedVideoCard video={v} onPlay={() => setPlaying(v)} />
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        ))}
+
+        {visibleSections.length === 0 && (
+          <Reveal className="px-6 pt-20 text-center md:px-16">
+            <p className="mx-auto max-w-md text-[15px] leading-[1.85] text-muted-foreground">
+              Films for this collection are coming soon.
+            </p>
+          </Reveal>
+        )}
+      </div>
 
       {playing && (
         <div
