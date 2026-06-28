@@ -58,17 +58,19 @@ const SECTION_ORDER: { slug: string; label: string }[] = [
 
 function FilmsPage() {
   const sections = useMemo<FilmSection[]>(() => {
-    return SECTION_ORDER.map(({ slug, label }) => {
+    const out: FilmSection[] = [];
+    for (const { slug, label } of SECTION_ORDER) {
       const cat = portfolioCategories.find((c) => c.slug === slug);
-      if (!cat) return null;
-      return {
+      if (!cat || cat.videos.length === 0) continue;
+      out.push({
         slug,
         name: cat.name,
         label,
         blurb: cat.blurb,
         videos: cat.videos.map((v) => ({ ...v, category: v.category ?? label })),
-      };
-    }).filter((s): s is FilmSection => !!s && s.videos.length > 0);
+      });
+    }
+    return out;
   }, []);
 
   const [active, setActive] = useState<string>("all");
