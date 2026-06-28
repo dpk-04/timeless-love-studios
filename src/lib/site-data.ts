@@ -43,7 +43,10 @@ export type VideoItem = {
   poster: string;
   title: string;
   caption?: string;
+  duration?: string;
+  category?: string;
 };
+
 
 export type PortfolioCategory = {
   slug: string;
@@ -198,20 +201,27 @@ export const showcaseVideos: VideoItem[] = [
     poster: img("portfolio/wedding-1.jpg"),
     title: "The Wedding Reel",
     caption: "A cinematic highlight film",
+    category: "Weddings",
+    duration: "1:24",
   },
   {
     src: vid("home/showreel-2.mp4"),
     poster: img("portfolio/prewedding-2.jpg"),
     title: "Pre-Wedding Stories",
     caption: "Romantic teasers across India",
+    category: "Pre-Wedding",
+    duration: "0:58",
   },
   {
     src: vid("home/showreel-3.mp4"),
     poster: img("portfolio/maternity-1.jpg"),
     title: "Portraits in Motion",
     caption: "Maternity & family films",
+    category: "Maternity",
+    duration: "1:12",
   },
 ];
+
 
 export const services = [
   {
