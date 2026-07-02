@@ -4,7 +4,7 @@ import { Instagram } from "@/components/site/Instagram";
 import { Reveal } from "@/components/site/Reveal";
 import { VideoShowcase } from "@/components/site/VideoShowcase";
 import {
-  artists,
+  
   portfolioCategories,
   services,
   testimonials,
