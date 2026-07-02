@@ -72,7 +72,6 @@ export const portfolioCategories: PortfolioCategory[] = [
       img("portfolio/wedding-3.jpg"),
       img("portfolio/wedding-4.jpg"),
       img("portfolio/wedding-5.jpg"),
-      img("portfolio/wedding-6.jpg"),
     ],
     videos: [
       {
@@ -163,8 +162,6 @@ export const portfolioCategories: PortfolioCategory[] = [
     images: [
       img("portfolio/babyshower-1.jpg"),
       img("portfolio/babyshower-2.jpg"),
-      img("portfolio/babyshower-3.jpg"),
-      img("portfolio/babyshower-4.jpg"),
     ],
     videos: [
       {
@@ -183,8 +180,6 @@ export const portfolioCategories: PortfolioCategory[] = [
     images: [
       img("portfolio/birthday-1.jpg"),
       img("portfolio/birthday-2.jpg"),
-      img("portfolio/birthday-3.jpg"),
-      img("portfolio/birthday-4.jpg"),
     ],
     videos: [
       {
