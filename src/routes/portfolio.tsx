@@ -3,7 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { VideoCard } from "@/components/site/VideoShowcase";
+import { ImageLightbox } from "@/components/site/ImageLightbox";
 import { portfolioCategories, type VideoItem } from "@/lib/site-data";
+
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -35,6 +37,8 @@ function PortfolioPage() {
   const [active, setActive] = useState<string>("all");
   const [media, setMedia] = useState<Media>("images");
   const [playing, setPlaying] = useState<VideoItem | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
 
   const current = useMemo(() => {
     if (active === "all") {
@@ -115,8 +119,11 @@ function PortfolioPage() {
                   direction={i % 3 === 0 ? "left" : i % 3 === 1 ? "up" : "right"}
                   className={i % 5 === 0 ? "md:row-span-2" : ""}
                 >
-                  <figure
-                    className={`group relative h-full w-full overflow-hidden ${
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    aria-label={`View ${img.cat} image ${i + 1}`}
+                    className={`group relative block h-full w-full overflow-hidden text-left ${
                       i % 5 === 0 ? "aspect-[3/5]" : "aspect-[4/5]"
                     }`}
                   >
@@ -131,9 +138,10 @@ function PortfolioPage() {
                     <figcaption className="absolute inset-x-0 bottom-0 p-6 text-[var(--cream)] opacity-0 transition-opacity duration-700 group-hover:opacity-100">
                       <span className="eyebrow text-[var(--beige)]">{img.cat}</span>
                     </figcaption>
-                  </figure>
+                  </button>
                 </Reveal>
               ))}
+
             </div>
           ) : current.videos.length ? (
             <div className="mt-14 grid gap-6 md:mt-16 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
@@ -201,9 +209,19 @@ function PortfolioPage() {
           </div>
         </div>
       )}
+
+      {lightboxIndex !== null && current.images.length > 0 && (
+        <ImageLightbox
+          images={current.images}
+          index={Math.min(lightboxIndex, current.images.length - 1)}
+          onClose={() => setLightboxIndex(null)}
+          onIndexChange={setLightboxIndex}
+        />
+      )}
     </>
   );
 }
+
 
 function FilterButton({
   active,
