@@ -31,6 +31,9 @@ const img = (path: string) => `/images/${path}`;
 const vid = (path: string) => `/videos/${path}`;
 
 export const heroSlides = [
+  { src: img("hero/hero-6.jpg"), alt: "Sreehitha — bridal portrait collage" },
+  { src: img("hero/hero-7.jpg"), alt: "Sreehitha — traditional bridal editorial" },
+  { src: img("hero/hero-8.jpg"), alt: "Mother and bride — pre-wedding moments" },
   { src: img("hero/hero-1.jpg"), alt: "Bride and groom in golden light" },
   { src: img("hero/hero-2.jpg"), alt: "Intimate portrait in soft daylight" },
   { src: img("hero/hero-3.jpg"), alt: "Destination wedding ceremony" },
