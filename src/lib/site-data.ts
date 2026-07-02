@@ -184,7 +184,7 @@ export const portfolioCategories: PortfolioCategory[] = [
     videos: [
       {
         src: vid("birthday/birthday-video-1.mp4"),
-        poster: img("portfolio/birthday-3.jpg"),
+        poster: img("portfolio/birthday-1.jpg"),
         title: "Vir Turns One",
         caption: "A first birthday film",
       },
