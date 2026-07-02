@@ -84,8 +84,8 @@ function AboutTeaser() {
         <Reveal direction="left" className="md:col-span-5">
           <div className="relative">
             <img
-              src={artists[0].image}
-              alt={artists[0].name}
+              src="/images/team/home-about.jpg"
+              alt="The CraftPhotography team"
               loading="lazy"
               decoding="async"
               className="aspect-[4/5] w-full object-cover shadow-[0_30px_80px_-30px_rgba(40,30,20,0.35)]"
