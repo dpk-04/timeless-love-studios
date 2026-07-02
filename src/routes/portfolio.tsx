@@ -209,9 +209,19 @@ function PortfolioPage() {
           </div>
         </div>
       )}
+
+      {lightboxIndex !== null && current.images.length > 0 && (
+        <ImageLightbox
+          images={current.images}
+          index={Math.min(lightboxIndex, current.images.length - 1)}
+          onClose={() => setLightboxIndex(null)}
+          onIndexChange={setLightboxIndex}
+        />
+      )}
     </>
   );
 }
+
 
 function FilterButton({
   active,
