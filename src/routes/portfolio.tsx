@@ -3,7 +3,9 @@ import { useEffect, useMemo, useState } from "react";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Reveal } from "@/components/site/Reveal";
 import { VideoCard } from "@/components/site/VideoShowcase";
+import { ImageLightbox } from "@/components/site/ImageLightbox";
 import { portfolioCategories, type VideoItem } from "@/lib/site-data";
+
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
