@@ -37,6 +37,8 @@ function PortfolioPage() {
   const [active, setActive] = useState<string>("all");
   const [media, setMedia] = useState<Media>("images");
   const [playing, setPlaying] = useState<VideoItem | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
 
   const current = useMemo(() => {
     if (active === "all") {
